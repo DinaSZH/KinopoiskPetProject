@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('partials/head.ejs') %>
+    <title>Document</title>
+  </head>
+  <body>
+    <%- include('partials/header.ejs') %>
+    <div class="container">
+      <div class="main">
+        <div class="categories">
+          <h3>Жанры</h3>
+          <%genres.forEach(genre =>{ %>
+          <a href="/<%=genre.key %>"> <%=genre.name%> </a>
+          <% }) %>
+        </div>
+
+        <div class="main-content">
+          <h3>Фильмы и сериалы</h3>
+          <div class="main-card">
+            <div class="card-left">
+              <div class="film-img">
+                <img src="/images/films/fim1.webp" alt="" />
+              </div>
+              <div class="film-info">
+                <a href="">All everything at once</a>
+                <a href="">All everything at once, 2021, 139min</a>
+                <a href="">USA, fantastica</a>
+                <button class="film-btn">
+                  <img src="/images/icons/play.svg" alt="" />
+                  WATCH
+                </button>
+              </div>
+            </div>
+            <div class="card-right">
+              <div class="film-rate">
+                <p>7.3</p>
+              </div>
+              <button class="film-btn">
+                <img src="/images/icons/save.svg" alt="" />
+                Watch Later
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

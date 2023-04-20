@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('partials/head.ejs') %>
+    <title>Document</title>
+  </head>
+  <body>
+    <%- include('partials/header.ejs') %>
+    <div class="container">
+      <div class="main">
+        <div class="categories">
+          <h3>Genres</h3>
+          <a href="">Drama</a>
+          <a href="">Comdedy</a>
+          <a href="">Horror</a>
+        </div>
+
+        <div class="main-content">
+          <h3>Профиль</h3>
+          <div class="profile">
+            <div class="profile-img">
+              <img src="/images/avatar.jpg" alt="" />
+            </div>
+
+            <div class="profile-info">
+              <p><span>Полное имя: </span> Сагинбаева Дина</p>
+              <p><span>Email: </span> dina21@gmail.com</p>
+              <button class="edit-btn">Edit profile</button>
+              <button class="logout-btn">Exit</button>
+            </div>
+          </div>
+
+          <h3>Сохраненные фильмы</h3>
+          <a class="add-btn" href="/new">Добавить фильм</a>
+          <div class="main-card">
+            <div class="card-left">
+              <div class="film-img">
+                <img src="/images/films/fim1.webp" alt="" />
+              </div>
+              <div class="film-info">
+                <a href="">All everything at once</a>
+                <a href="">All everything at once, 2021, 139min</a>
+                <a href="">USA, fantastica</a>
+                <button class="film-btn">
+                  <img src="/images/icons/play.svg" alt="" />
+                  WATCH
+                </button>
+              </div>
+            </div>
+            <div class="card-right">
+              <div class="film-rate">
+                <p>7.3</p>
+              </div>
+              <div class="film-btns">
+                <a href="/edit">Edit</a>
+                <a>Delete</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

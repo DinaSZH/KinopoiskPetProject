@@ -1,0 +1,147 @@
+.main {
+  padding: 20px 40px 50px;
+  background-color: #fff;
+  min-height: 75vh;
+  display: flex;
+  justify-content: space-between;
+}
+
+.categories {
+  width: 20%;
+  border-right: 1px solid rgba(31, 31, 31, 0.1);
+  display: flex;
+  flex-direction: column;
+  padding: 15px 0;
+  padding-right: 30px;
+  box-sizing: border-box;
+}
+
+.categories h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-decoration: none;
+  color: #000;
+  font-weight: 400;
+  border-bottom: 2px solid transparent;
+}
+
+.categories a {
+  font-size: 16px;
+  margin-bottom: 20px;
+  text-decoration: none;
+  color: #000;
+  font-weight: 500;
+  border-bottom: 2px solid transparent;
+}
+
+.categories a:hover {
+  border-bottom: 2px solid #f50;
+  transition: 0.3s;
+}
+
+.main-content {
+  width: 75%;
+  padding: 15px 30px;
+  box-sizing: border-box;
+}
+
+.main-card {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(31, 31, 31, 0.1);
+  padding: 20px;
+}
+
+.main-content h3 {
+  font-size: 24px;
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 50px;
+}
+
+.card-left {
+  width: 60%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.film-img {
+  width: 22%;
+}
+
+.film-img img {
+  width: 100%;
+}
+
+.film-info {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.film-info a {
+  text-decoration: none;
+  color: #000;
+}
+
+.film-info a:first-child {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.film-info .film-btn {
+  background: linear-gradient(
+    90deg,
+    #ff5c4d,
+    #eb469f 26.56%,
+    #8341ef 75%,
+    #3f68f9
+  );
+}
+
+.film-btn {
+  padding: 7px 25px;
+  display: flex;
+  align-items: center;
+  border: none;
+  color: #fff;
+  gap: 10px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.film-btn img {
+  width: 20%;
+}
+
+.card-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  width: 35%;
+}
+
+.film-rate {
+  width: 15%;
+  padding-top: 15px;
+}
+
+.film-rate p {
+  font-size: 18px;
+  color: #3bb33b;
+}
+
+.card-right .film-btn {
+  width: 65%;
+  font-weight: 700;
+  color: #000;
+  gap: 20px;
+}
+
+.main-card:hover {
+  background-color: #f7f7f7;
+  transition: 0.3s;
+}

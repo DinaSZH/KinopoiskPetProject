@@ -1,0 +1,6 @@
+.container {
+  padding: 100px 5% 50px;
+  background-color: #f4f4f4;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
