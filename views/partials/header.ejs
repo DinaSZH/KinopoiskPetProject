@@ -34,6 +34,12 @@
     </div>
   </div>
   <div class="head-buttons">
+    <% if(user._id && user.isAdmin) { %>
+    <a href="/admin/<%=user._id %>">Profile</a>
+    <% } else if(user._id && !user.isAdmin){ %>
+    <a href="/profile/<%=user._id %>">Profile</a>
+    <% } else { %>
     <a href="/login">Log in</a>
+    <% } %>
   </div>
 </header>

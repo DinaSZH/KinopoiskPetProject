@@ -10,9 +10,9 @@
       <div class="main">
         <div class="categories">
           <h3>Genres</h3>
-          <a href="">Drama</a>
-          <a href="">Comdedy</a>
-          <a href="">Horror</a>
+          <% genres.forEach(genre => { %>
+          <a href=""> <%=genre.name%> </a>
+          <% }); %>
         </div>
 
         <div class="main-content">
@@ -23,10 +23,13 @@
             </div>
 
             <div class="profile-info">
-              <p><span>Полное имя: </span> Сагинбаева Дина</p>
-              <p><span>Email: </span> dina21@gmail.com</p>
-              <button class="edit-btn">Edit profile</button>
-              <button class="logout-btn">Exit</button>
+              <p><span>Полное имя: </span> <%=user.full_name %></p>
+              <p><span>Email: </span> <%=user.email %></p>
+
+              <% if(loginUser.id==user.id){ %>
+              <a class="edit-btn">Edit profile</a>
+              <a class="logout-btn" href="/api/signout">Exit</a>
+              <% } %>
             </div>
           </div>
 

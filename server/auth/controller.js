@@ -26,12 +26,32 @@ const signUp = async (req, res) => {
         email: req.body.email,
         full_name: req.body.full_name,
         password: hash,
+        isAdmin: false,
       }).save();
       res.redirect("/login");
     });
   });
 };
 
+const signIn = (req, res) => {
+  if (req.user.isAdmin) {
+    res.redirect(`/admin/${req.user._id}`);
+  } else {
+    res.redirect(`/profile/${req.user._id}`);
+  }
+};
+
+const signOut = (req, res) => {
+  req.logout(function (err) {
+    if (err) {
+      console.log(err);
+    }
+  });
+  res.redirect("/");
+};
+
 module.exports = {
   signUp,
+  signIn,
+  signOut,
 };

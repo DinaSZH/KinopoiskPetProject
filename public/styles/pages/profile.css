@@ -26,7 +26,7 @@
   font-weight: 600;
 }
 
-.profile-info button {
+.profile-info a {
   padding: 7px 25px;
   border: none;
   border-radius: 15px;
@@ -34,6 +34,7 @@
   color: #fff;
   font-weight: 500;
   font-size: 16px;
+  text-decoration: none;
 }
 
 .edit-btn {
