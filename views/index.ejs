@@ -17,15 +17,18 @@
 
         <div class="main-content">
           <h3>Фильмы и сериалы</h3>
+          <% films.forEach(item => { %>
           <div class="main-card">
             <div class="card-left">
               <div class="film-img">
-                <img src="/images/films/fim1.webp" alt="" />
+                <img src="<%=item.image %>" alt="" />
               </div>
               <div class="film-info">
-                <a href="">All everything at once</a>
-                <a href="">All everything at once, 2021, 139min</a>
-                <a href="">USA, fantastica</a>
+                <a href=""><%=item.titleRus %></a>
+                <a href=""
+                  ><%=item.titleEng %>, <%=item.year %>, <%=item.time %> min</a
+                >
+                <a href=""><%=item.country.name %>, <%=item.genre.name %></a>
                 <button class="film-btn">
                   <img src="/images/icons/play.svg" alt="" />
                   WATCH
@@ -42,6 +45,7 @@
               </button>
             </div>
           </div>
+          <% }) %>
         </div>
       </div>
     </div>

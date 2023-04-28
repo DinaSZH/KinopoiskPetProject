@@ -39,3 +39,7 @@
   cursor: pointer;
   text-decoration: none;
 }
+
+.film-info a {
+  margin-bottom: 15px;
+}

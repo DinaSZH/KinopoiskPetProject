@@ -32,15 +32,20 @@
 
           <h3>Фильмы</h3>
           <a class="add-btn" href="/new">Добавить фильм</a>
+
+          <% films.forEach(item => {%>
           <div class="main-card">
             <div class="card-left">
               <div class="film-img">
-                <img src="/images/films/fim1.webp" alt="" />
+                <img src="<%=item.image %>" alt="" />
               </div>
               <div class="film-info">
-                <a href="">All everything at once</a>
-                <a href="">All everything at once, 2021, 139min</a>
-                <a href="">USA, fantastica</a>
+                <a href=""><%=item.titleRus %></a>
+                <a href=""
+                  ><%=item.titleEng %>, <%=item.year %>, <%=item.time %></a
+                >
+                <a href=""><%=item.country.name %>, <%=item.genre.name %></a>
+                <a href="">Author: <%=item.author.full_name %></a>
                 <button class="film-btn">
                   <img src="/images/icons/play.svg" alt="" />
                   WATCH
@@ -52,11 +57,12 @@
                 <p>7.3</p>
               </div>
               <div class="film-btns">
-                <a href="/edit">Edit</a>
+                <a href="/edit/<%=item._id%>">Edit</a>
                 <a>Delete</a>
               </div>
             </div>
           </div>
+          <% }) %>
         </div>
       </div>
     </div>

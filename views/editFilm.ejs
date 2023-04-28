@@ -8,11 +8,19 @@
     <%- include('partials/header.ejs') %>
     <div class="container">
       <div class="main">
-        <form action="" class="form">
+        <form
+          action="/api/films/edit"
+          method="POST"
+          enctype="multipart/form-data"
+          class="form"
+        >
           <h3>Редактировать фильм</h3>
+          <fieldset>
+            <input type="hidden" value="<%=film._id %>" name="id" />
+          </fieldset>
           <fieldset class="fieldset">
             <label for="">Добавьте картинку</label>
-            <input type="file" name="filmImg" />
+            <input type="file" name="image" />
           </fieldset>
           <fieldset class="fieldset">
             <label for="">Название фильма на русском</label>
@@ -20,6 +28,7 @@
               type="text"
               placeholder="Введите название фильма на русском"
               name="titleRus"
+              value="<%=film.titleRus %>"
             />
           </fieldset>
           <fieldset class="fieldset">
@@ -28,6 +37,7 @@
               type="text"
               placeholder="Введите название фильма на английском"
               name="titleEng"
+              value="<%=film.titleEng %>"
             />
           </fieldset>
           <fieldset class="fieldset">
@@ -36,6 +46,7 @@
               type="text"
               placeholder="Введите год выпуска фильма"
               name="year"
+              value="<%=film.year %>"
             />
           </fieldset>
 
@@ -45,23 +56,31 @@
               type="text"
               placeholder="Введите длительность фильма"
               name="time"
+              value="<%=film.time %>"
             />
           </fieldset>
 
           <fieldset class="fieldset">
             <label for="">Страна выпуска</label>
             <select name="country" id="">
-              <% countries.forEach(country => { %>
-              <option value=""><%=country.name %></option>
-              <% }) %>
+              <% countries.forEach(country => { if(country.id == film.country){
+              %>
+              <option value="<%=country._id%>" selected>
+                <%=country.name %>
+              </option>
+              <% } else { %>
+              <option value="<%=country._id%>"><%=country.name %></option>
+              <% } }) %>
             </select>
           </fieldset>
           <fieldset class="fieldset">
             <label for="">Выберите жанр</label>
             <select name="genre" id="">
-              <% genres.forEach(genre => { %>
-              <option value=""><%=genre.name %></option>
-              <% }) %>
+              <% genres.forEach(genre => { if(genre.id == film.genre) { %>
+              <option value="<%=genre._id%>" selected><%=genre.name %></option>
+              <% } else { %>
+              <option value="<%=genre._id%>"><%=genre.name %></option>
+              <% }}) %>
             </select>
           </fieldset>
           <fieldset class="fieldset">

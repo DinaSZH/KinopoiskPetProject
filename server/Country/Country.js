@@ -5,4 +5,4 @@ const CountrySchema = new mongoose.Schema({
   key: Number,
 });
 
-module.exports = mongoose.model("schema", CountrySchema);
+module.exports = mongoose.model("country", CountrySchema);

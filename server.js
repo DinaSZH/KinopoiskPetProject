@@ -29,6 +29,7 @@ app.use(require("./server/pages/router"));
 app.use(require("./server/Genres/router"));
 app.use(require("./server/Country/router"));
 app.use(require("./server/auth/router"));
+app.use(require("./server/Films/router"));
 
 const PORT = 8001;
 app.listen(PORT, () => {
