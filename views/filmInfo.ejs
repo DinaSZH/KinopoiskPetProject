@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('partials/head.ejs') %>
+    <title>Document</title>
+  </head>
+  <body>
+    <%- include('partials/header.ejs') %>
+    <div class="container">
+      <div class="main">
+        <div class="categories">
+          <h3>Genres</h3>
+          <% genres.forEach(genre => { %>
+          <a href=""> <%=genre.name %> </a>
+          <% }); %>
+        </div>
+
+        <div class="main-content">
+          <h3>FILM INFO</h3>
+          <div class="profile"></div>
+          <a href="">
+            <div class="main-card">
+              <div class="card-left">
+                <div class="film-img">
+                  <img src="/<%=film.image %>" alt="" />
+                </div>
+                <div class="film-info">
+                  <a href=""><%=film.titleRus %></a>
+                  <a href=""
+                    ><%=film.titleEng %>, <%=film.year %>, <%=film.time %></a
+                  >
+                  <a href=""><%=film.country.name %>, <%=film.genre.name %></a>
+                  <button class="film-btn">
+                    <img src="/images/icons/play.svg" alt="" />
+                    WATCH
+                  </button>
+                </div>
+              </div>
+              <!-- <div class="card-right">
+              <div class="film-rate">
+                <p>7.3</p>
+              </div>
+              <div class="film-btns">
+                <a href="/edit/<%=film._id%>">Edit</a>
+                <a
+                  onclick="deleteFilms('<%=film._id%>', '<%=film.author._id%>')"
+                  >Delete</a
+                >
+              </div>
+            </div> -->
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <%- include('partials/scripts.ejs') %>
+  </body>
+</html>

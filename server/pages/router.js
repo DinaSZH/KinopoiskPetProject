@@ -26,11 +26,16 @@ router.get("/register", (req, res) => {
 router.get("/profile/:id", async (req, res) => {
   const allGenres = await Genres.find();
   const user = await User.findById(req.params.id);
+  const films = await Film.find()
+    .populate("country")
+    .populate("genre")
+    .populate("author");
   if (user) {
     res.render("profile", {
       user: user,
       genres: allGenres,
       loginUser: req.user,
+      films: films,
     });
   } else {
     res.redirect("/not-found");
@@ -77,6 +82,18 @@ router.get("/edit/:id", async (req, res) => {
 
 router.get("/not-found", (req, res) => {
   res.render("notFound");
+});
+
+router.get("/filmInfo/:id", async (req, res) => {
+  const allGenres = await Genres.find();
+  const allCountries = await Country.find();
+  const film = await Film.findById(req.params.id);
+  res.render("filmInfo", {
+    genres: allGenres,
+    countries: allCountries,
+    user: req.user ? req.user : {},
+    film,
+  });
 });
 
 module.exports = router;

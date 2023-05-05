@@ -18,36 +18,41 @@
         <div class="main-content">
           <h3>Фильмы и сериалы</h3>
           <% films.forEach(item => { %>
-          <div class="main-card">
-            <div class="card-left">
-              <div class="film-img">
-                <img src="<%=item.image %>" alt="" />
+          <a href="/filmInfo/<%=item._id %>">
+            <div class="main-card">
+              <div class="card-left">
+                <div class="film-img">
+                  <img src="<%=item.image %>" alt="" />
+                </div>
+                <div class="film-info">
+                  <a href=""><%=item.titleRus %></a>
+                  <a href=""
+                    ><%=item.titleEng %>, <%=item.year %>, <%=item.time %>
+                    min</a
+                  >
+                  <a href=""><%=item.country.name %>, <%=item.genre.name %></a>
+                  <button class="film-btn">
+                    <img src="/images/icons/play.svg" alt="" />
+                    WATCH
+                  </button>
+                </div>
               </div>
-              <div class="film-info">
-                <a href=""><%=item.titleRus %></a>
-                <a href=""
-                  ><%=item.titleEng %>, <%=item.year %>, <%=item.time %> min</a
-                >
-                <a href=""><%=item.country.name %>, <%=item.genre.name %></a>
-                <button class="film-btn">
-                  <img src="/images/icons/play.svg" alt="" />
-                  WATCH
+              <div class="card-right">
+                <div class="film-rate">
+                  <p>7.3</p>
+                </div>
+                <button class="film-btn" onclick="saveToWatch('<%=item._id%>')">
+                  <img src="/images/icons/save.svg" alt="" />
+                  Watch Later
                 </button>
               </div>
             </div>
-            <div class="card-right">
-              <div class="film-rate">
-                <p>7.3</p>
-              </div>
-              <button class="film-btn">
-                <img src="/images/icons/save.svg" alt="" />
-                Watch Later
-              </button>
-            </div>
-          </div>
+          </a>
           <% }) %>
         </div>
       </div>
     </div>
+
+    <%- include('partials/scripts.ejs') %>
   </body>
 </html>

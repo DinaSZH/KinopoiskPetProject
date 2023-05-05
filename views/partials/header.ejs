@@ -5,7 +5,7 @@
     </a>
   </div>
   <div class="head-menu">
-    <a href="">
+    <a href="/">
       <img src="/images/icons/play.svg" alt="" />
       Онлайн кинотеатр
     </a>
@@ -35,9 +35,9 @@
   </div>
   <div class="head-buttons">
     <% if(user._id && user.isAdmin) { %>
-    <a href="/admin/<%=user._id %>">Profile</a>
+    <a href="/admin/<%=user._id %>">Admin</a>
     <% } else if(user._id && !user.isAdmin){ %>
-    <a href="/profile/<%=user._id %>">Profile</a>
+    <a href="/profile/<%=user._id %>"><%=user.full_name %></a>
     <% } else { %>
     <a href="/login">Log in</a>
     <% } %>

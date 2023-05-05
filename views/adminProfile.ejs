@@ -34,37 +34,44 @@
           <a class="add-btn" href="/new">Добавить фильм</a>
 
           <% films.forEach(item => {%>
-          <div class="main-card">
-            <div class="card-left">
-              <div class="film-img">
-                <img src="<%=item.image %>" alt="" />
+          <a href="/filmInfo/<%=item._id %>">
+            <div class="main-card">
+              <div class="card-left">
+                <div class="film-img">
+                  <img src="/<%=item.image %>" alt="" />
+                </div>
+                <div class="film-info">
+                  <a href=""><%=item.titleRus %></a>
+                  <a href=""
+                    ><%=item.titleEng %>, <%=item.year %>, <%=item.time %></a
+                  >
+                  <a href=""><%=item.country.name %>, <%=item.genre.name %></a>
+                  <a href="">Author: <%=item.author.full_name %></a>
+                  <button class="film-btn">
+                    <img src="/images/icons/play.svg" alt="" />
+                    WATCH
+                  </button>
+                </div>
               </div>
-              <div class="film-info">
-                <a href=""><%=item.titleRus %></a>
-                <a href=""
-                  ><%=item.titleEng %>, <%=item.year %>, <%=item.time %></a
-                >
-                <a href=""><%=item.country.name %>, <%=item.genre.name %></a>
-                <a href="">Author: <%=item.author.full_name %></a>
-                <button class="film-btn">
-                  <img src="/images/icons/play.svg" alt="" />
-                  WATCH
-                </button>
+              <div class="card-right">
+                <div class="film-rate">
+                  <p>7.3</p>
+                </div>
+                <div class="film-btns">
+                  <a href="/edit/<%=item._id%>">Edit</a>
+                  <a
+                    onclick="deleteFilms('<%=item._id%>', '<%=item.author._id%>')"
+                    >Delete</a
+                  >
+                </div>
               </div>
             </div>
-            <div class="card-right">
-              <div class="film-rate">
-                <p>7.3</p>
-              </div>
-              <div class="film-btns">
-                <a href="/edit/<%=item._id%>">Edit</a>
-                <a>Delete</a>
-              </div>
-            </div>
-          </div>
+          </a>
           <% }) %>
         </div>
       </div>
     </div>
+
+    <%- include('partials/scripts.ejs') %>
   </body>
 </html>
