@@ -26,42 +26,48 @@
               <p><span>Полное имя: </span> <%=user.full_name %></p>
               <p><span>Email: </span> <%=user.email %></p>
 
-              <% if(loginUser.id==user.id){ %>
+              <% if(loginUser && loginUser.id==user.id){ %>
               <a class="edit-btn">Edit profile</a>
               <a class="logout-btn" href="/api/signout">Exit</a>
               <% } %>
             </div>
           </div>
 
-          <h3>Фильмы</h3>
-          <% films.forEach(item => {%>
-          <a href="/filmInfo/<%=item._id %>">
-            <div class="main-card">
-              <div class="card-left">
-                <div class="film-img">
-                  <img src="/<%=item.image %>" alt="" />
-                </div>
-                <div class="film-info">
-                  <a href=""><%=item.titleRus %></a>
-                  <a href=""
-                    ><%=item.titleEng %>, <%=item.year %>, <%=item.time %></a
-                  >
-                  <a href=""><%=item.country.name %>, <%=item.genre.name %></a>
-                  <a href="">Author: <%=item.author.full_name %></a>
-                  <button class="film-btn">
-                    <img src="/images/icons/play.svg" alt="" />
-                    WATCH
-                  </button>
-                </div>
+          <h3>Сохраненные Фильмы</h3>
+
+          <%if(user.toWatch.length > 0) { user.toWatch.forEach(film => { %>
+          <div class="main-card">
+            <div class="card-left">
+              <div class="film-img">
+                <img src="<%=film.image %>" alt="" />
               </div>
-              <div class="card-right">
-                <div class="film-rate">
-                  <p>7.3</p>
-                </div>
+              <div class="film-info">
+                <a href=""><%=film.titleRus %></a>
+                <a href=""
+                  ><%=film.titleEng %>, <%=film.year %>, <%=film.time %></a
+                >
+                <a href=""><%=film.country.name %>, <%=film.genre.name %></a>
+                <button class="film-btn">
+                  <img src="/images/icons/play.svg" alt="" />
+                  WATCH
+                </button>
               </div>
             </div>
-          </a>
-          <% }) %>
+            <div class="card-right">
+              <div class="film-rate">
+                <p>7.3</p>
+              </div>
+              <button
+                class="film-btn"
+                onclick="deleteFromToWatch('<%=film._id%>')"
+              >
+                <img src="/images/icons/saved.png" alt="" />
+                Сохранено
+              </button>
+            </div>
+          </div>
+
+          <% })} %>
         </div>
       </div>
     </div>

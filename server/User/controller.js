@@ -1,8 +1,7 @@
 const User = require("../auth/User");
 
 const saveToWatch = async (req, res) => {
-  // const data = await Genres.find();
-  // res.send({ data });
+  console.log(req.body);
 };
 
 module.exports = { saveToWatch };

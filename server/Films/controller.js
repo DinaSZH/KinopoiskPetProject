@@ -1,4 +1,5 @@
 const Film = require("./Film");
+const User = require("../auth/User");
 const fs = require("fs");
 const path = require("path");
 const createFilm = async (req, res) => {
@@ -18,7 +19,7 @@ const createFilm = async (req, res) => {
       time: req.body.time,
       country: req.body.country,
       genre: req.body.genre,
-      image: `images/films/${req.file.filename}`,
+      image: `/images/films/${req.file.filename}`,
       author: req.user._id,
     }).save();
     res.redirect(`/admin/${req.user._id}`);
@@ -68,15 +69,45 @@ const editFilm = async (req, res) => {
 const deleteFilm = async (req, res) => {
   const film = await Film.findById(req.params.id);
   if (film) {
-    fs.unlinkSync(path.join(__dirname + "../../../public" + film.image));
+    fs.unlinkSync(path.join(__dirname + "../../../public/" + film.image));
     await Film.deleteOne({ _id: req.params.id });
     res.status(200).send("ok");
   } else {
     res.status(404).send("Not found");
   }
 };
+
+const saveFilm = async (req, res) => {
+  if (req.user && req.body.id) {
+    const user = await User.findById(req.user.id);
+    const findFilm = user.toWatch.filter((item) => item._id == req.body.id);
+    if (findFilm.length == 0) {
+      user.toWatch.push(req.body.id);
+      user.save();
+      res.send("Фильм успешно сохранен");
+    } else {
+      res.send("Фильм уже сохранен");
+    }
+  }
+};
+
+const deleteFromToWatch = async (req, res) => {
+  if (req.user && req.params.id) {
+    const user = await User.findById(req.user.id);
+    for (let i = 0; i < user.toWatch.length; i++) {
+      if (user.toWatch[i] == req.params.id) {
+        user.toWatch.splice(i, 1);
+        user.save();
+        res.send("Успешно удаленно");
+      }
+    }
+    // res.send("Данные не найдены");
+  }
+};
 module.exports = {
   createFilm,
   editFilm,
   deleteFilm,
+  saveFilm,
+  deleteFromToWatch,
 };

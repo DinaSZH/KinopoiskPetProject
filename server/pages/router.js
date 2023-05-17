@@ -8,9 +8,10 @@ const Film = require("../Films/Film");
 router.get("/", async (req, res) => {
   const allGenres = await Genres.find();
   const films = await Film.find().populate("country").populate("genre");
+  const user = req.user ? await User.findById(req.user._id) : {};
   res.render("index", {
     genres: allGenres,
-    user: req.user ? req.user : {},
+    user,
     films,
   });
 });
@@ -25,7 +26,11 @@ router.get("/register", (req, res) => {
 
 router.get("/profile/:id", async (req, res) => {
   const allGenres = await Genres.find();
-  const user = await User.findById(req.params.id);
+  const user = await User.findById(req.params.id)
+    .populate("toWatch")
+    .populate({ path: "toWatch", populate: { path: "country" } })
+    .populate({ path: "toWatch", populate: { path: "genre" } });
+
   const films = await Film.find()
     .populate("country")
     .populate("genre")
