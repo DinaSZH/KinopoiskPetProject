@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('partials/head.ejs') %>
+    <title>Document</title>
+  </head>
+  <body>
+    <%- include('partials/header.ejs') %>
+    <div class="container">
+      <div class="main-detail">
+        <div class="detail">
+          <div class="film-image">
+            <img src="<%=film.image %>" alt="" />
+          </div>
+
+          <div class="film-info-detail">
+            <h2><%=film.titleRus %> (<%=film.year %>)</h2>
+            <p><%=film.titleEng %></p>
+            <% if(user.toWatch.includes(film._id)) { %>
+            <button
+              class="film-btn"
+              onclick="deleteFromToWatch('<%=film._id%>')"
+            >
+              <img src="/images/icons/saved.png" alt="" />
+              Сохранено
+            </button>
+            <% } else { %>
+            <button class="film-btn" onclick="saveToWatch('<%=film._id%>')">
+              <img src="/images/icons/save.svg" alt="" />
+              Буду смотреть
+            </button>
+            <% } %>
+            <h4>О фильме</h4>
+            <div class="film-details">
+              <p>Год производства</p>
+              <p><%=film.year %></p>
+            </div>
+
+            <div class="film-details">
+              <p>Страна</p>
+              <p><%=film.country.name %></p>
+            </div>
+
+            <div class="film-details">
+              <p>Жанр</p>
+              <p><%=film.genre.name %></p>
+            </div>
+
+            <div class="film-details">
+              <p>Время</p>
+              <p><%=film.time %> мин</p>
+            </div>
+          </div>
+        </div>
+        <% if(film.video) { %>
+        <div class="film-player">
+          <iframe
+            width="560"
+            height="315"
+            src="<%=film.video %>"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+        </div>
+        <% } %>
+      </div>
+    </div>
+    <%- include('partials/scripts.ejs') %>
+  </body>
+</html>

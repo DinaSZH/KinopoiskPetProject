@@ -5,6 +5,7 @@ const FilmSchema = new mongoose.Schema({
   titleEng: String,
   year: Number,
   time: String,
+  video: String,
   country: { type: Schema.Types.ObjectId, ref: "country" },
   genre: { type: Schema.Types.ObjectId, ref: "genre" },
   image: String,

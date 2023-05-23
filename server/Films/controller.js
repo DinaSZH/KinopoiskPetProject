@@ -10,7 +10,8 @@ const createFilm = async (req, res) => {
     req.body.year > 0 &&
     req.body.time > 10 &&
     req.body.country.length > 2 &&
-    req.body.genre.length > 2
+    req.body.genre.length > 2 &&
+    req.body.video.length > 2
   ) {
     await new Film({
       titleRus: req.body.titleRus,
@@ -19,6 +20,7 @@ const createFilm = async (req, res) => {
       time: req.body.time,
       country: req.body.country,
       genre: req.body.genre,
+      video: req.body.video,
       image: `/images/films/${req.file.filename}`,
       author: req.user._id,
     }).save();
@@ -36,7 +38,8 @@ const editFilm = async (req, res) => {
     req.body.year > 0 &&
     req.body.time > 10 &&
     req.body.country.length > 2 &&
-    req.body.genre.length > 2
+    req.body.genre.length > 2 &&
+    req.body.video.length > 2
   ) {
     const films = await Film.findById(req.body.id);
     fs.unlinkSync(path.join(__dirname + "../../../public/" + films.image));
@@ -46,6 +49,7 @@ const editFilm = async (req, res) => {
     films.time = req.body.time;
     films.country = req.body.country;
     films.genre = req.body.genre;
+    films.video = req.body.video;
     films.image = `/images/films/${req.file.filename}`;
     films.author = req.user._id;
     films.save();
