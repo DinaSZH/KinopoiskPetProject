@@ -4,7 +4,7 @@ const Genres = require("../Genres/Genres");
 const Country = require("../Country/Country");
 const User = require("../auth/User");
 const Film = require("../Films/Film");
-
+const Rate = require("../Rates/Rates");
 router.get("/", async (req, res) => {
   const options = {};
   const genres = await Genres.findOne({ key: req.query.genre });
@@ -122,10 +122,20 @@ router.get("/not-found", (req, res) => {
 });
 
 router.get("/detail/:id", async (req, res) => {
+  const rates = await Rate.find({ filmId: req.params.id }).populate("authorId");
+  let averageRate = 0;
+  for (let i = 0; i < rates.length; i++) {
+    averageRate += rates[i].rate;
+  }
   const film = await Film.findById(req.params.id)
     .populate("country")
     .populate("genre");
-  res.render("detail", { user: req.user ? req.user : {}, film: film });
+  res.render("detail", {
+    user: req.user ? req.user : {},
+    film: film,
+    rates: rates,
+    averageRate: (averageRate / rates.length).toFixed(1),
+  });
 });
 
 router.get("/filmInfo/:id", async (req, res) => {

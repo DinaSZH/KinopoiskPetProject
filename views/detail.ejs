@@ -16,7 +16,7 @@
           <div class="film-info-detail">
             <h2><%=film.titleRus %> (<%=film.year %>)</h2>
             <p><%=film.titleEng %></p>
-            <% if(user.toWatch.includes(film._id)) { %>
+            <% if(user && user.toWatch && user.toWatch.includes(film._id)) { %>
             <button
               class="film-btn"
               onclick="deleteFromToWatch('<%=film._id%>')"
@@ -50,6 +50,11 @@
               <p>Время</p>
               <p><%=film.time %> мин</p>
             </div>
+
+            <div class="film-details">
+              <p>Рейтинг</p>
+              <p><%=averageRate %> </p>
+            </div>
           </div>
         </div>
         <% if(film.video) { %>
@@ -65,6 +70,63 @@
           ></iframe>
         </div>
         <% } %>
+
+        <div class="comments">
+          <h3>Комментарии</h3>
+          <% if(user && user._id) { %>
+          <form class="add-comment-form" onsubmit="sendRate(event)">
+            <p>Оцените фильм</p>
+            <div class="comment-stars">
+              <img onclick="rateFilm(1)" src="/images/icons/star.svg" alt="" />
+              <img onclick="rateFilm(2)" src="/images/icons/star.svg" alt="" />
+              <img onclick="rateFilm(3)" src="/images/icons/star.svg" alt="" />
+              <img onclick="rateFilm(4)" src="/images/icons/star.svg" alt="" />
+              <img onclick="rateFilm(5)" src="/images/icons/star.svg" alt="" />
+            </div>
+            <p>Напишите комментарий</p>
+            <textarea id="comment-text"></textarea>
+            <input type="hidden" value="<%=user._id %>" id="comment_author" />
+            <input type="hidden" value="<%=film._id %>" id="comment_film" />
+            <button type="submit">Сохранить</button>
+          </form>
+          <% } else{ %>
+          <p>
+            <a href="/login">Войдите</a>
+            или
+            <a href="/register">зарегестрируйтесь</a> , чтобы оставить
+            комментарий
+          </p>
+          <% } %> <% if(rates) { rates.forEach(rate =>{ %>
+          <div class="comment">
+            <p>Пользователь: <a href=""><%=rate.authorId.full_name %></a></p>
+            
+            <div class="comment-stars">
+              <% 
+                for(let i=0; i<5; i++){
+                  if(i<rate.rate){
+
+                    %>
+                    <img class="active-star"  src="/images/icons/star.svg" alt="" />
+                    <%
+                  } 
+                  else{
+                    %>
+                    <img  src="/images/icons/star.svg" alt="" />
+                    <%
+                  }
+                }
+                %>
+             
+             
+            </div>
+            <% if(rate.text.length > 0) { %>
+              <p>Комментарий: <%=rate.text %></p>
+              <%
+            } %>
+            
+          </div>
+          <% }) } %>
+        </div>
       </div>
     </div>
     <%- include('partials/scripts.ejs') %>
