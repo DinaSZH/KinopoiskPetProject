@@ -10,20 +10,33 @@ const createFilm = async (req, res) => {
     req.body.year > 0 &&
     req.body.time > 10 &&
     req.body.country.length > 2 &&
-    req.body.genre.length > 2 &&
-    req.body.video.length > 2
+    req.body.genre.length > 2
   ) {
-    await new Film({
-      titleRus: req.body.titleRus,
-      titleEng: req.body.titleEng,
-      year: req.body.year,
-      time: req.body.time,
-      country: req.body.country,
-      genre: req.body.genre,
-      video: req.body.video,
-      image: `/images/films/${req.file.filename}`,
-      author: req.user._id,
-    }).save();
+    if (req.body.video && req.body.video.length > 2) {
+      await new Film({
+        titleRus: req.body.titleRus,
+        titleEng: req.body.titleEng,
+        year: req.body.year,
+        time: req.body.time,
+        country: req.body.country,
+        genre: req.body.genre,
+        video: req.body.video,
+        image: `/images/films/${req.file.filename}`,
+        author: req.user._id,
+      }).save();
+    } else if (req.body.series && req.body.series.length > 0) {
+      await new Film({
+        titleRus: req.body.titleRus,
+        titleEng: req.body.titleEng,
+        year: req.body.year,
+        time: req.body.time,
+        country: req.body.country,
+        genre: req.body.genre,
+        series: req.body.series,
+        image: `/images/films/${req.file.filename}`,
+        author: req.user._id,
+      }).save();
+    }
     res.redirect(`/admin/${req.user._id}`);
   } else {
     res.redirect("/new?error=1");

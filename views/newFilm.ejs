@@ -54,15 +54,6 @@
           </fieldset>
 
           <fieldset class="fieldset">
-            <label for="">Ссылка на фильма</label>
-            <input
-              type="text"
-              placeholder="Введите ссылку на фильм"
-              name="video"
-            />
-          </fieldset>
-
-          <fieldset class="fieldset">
             <label for="">Страна выпуска</label>
             <select name="country" id="">
               <% countries.forEach(country => { %>
@@ -78,6 +69,14 @@
               <% }) %>
             </select>
           </fieldset>
+          <a class="addSeriesBtn" id="addSeriesBtn" onclick="addSeries()"
+            >Добавить серии</a
+          >
+          <a class="addSeriesBtn" id="addFilmUrlBtn" onclick="addFilmUrl()"
+            >Добавить ссылку на фильм</a
+          >
+          <div id="urls"></div>
+
           <fieldset class="fieldset">
             <button type="submit">Добавить</button>
           </fieldset>

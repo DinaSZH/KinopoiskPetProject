@@ -69,7 +69,24 @@
             allowfullscreen
           ></iframe>
         </div>
-        <% } %>
+        <% } else if(film.series.length >0){
+          film.series.forEach((s, i) =>{
+          %>
+          <p><%=i+1%> серия</p>
+          <div class="film-player">
+          <iframe
+            width="560"
+            height="315"
+            src="<%=s %>"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+        </div>
+          <%
+         })
+          } %>
 
         <div class="comments">
           <h3>Комментарии</h3>
