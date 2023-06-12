@@ -31,16 +31,20 @@
                 <a href="/detail/<%=item._id %>"
                   ><%=item.country.name %>, <%=item.genre.name %></a
                 >
-                <button class="film-btn">
-                  <img src="/images/icons/play.svg" alt="" />
-                  Смотреть
-                </button>
+                <a href="/detail/<%=item._id %>">
+                  <button class="film-btn">
+                    <img src="/images/icons/play.svg" alt="" />
+                    Смотреть
+                  </button>
+                </a>
+                
               </div>
             </div>
             <div class="card-right">
               <div class="film-rate">
                 <p>7.3</p>
               </div>
+              <% if(user && user._id) { %>
               <% if(user.toWatch && user.toWatch.includes(item._id)){ %>
               <button
                 class="film-btn"
@@ -54,7 +58,8 @@
                 <img src="/images/icons/save.svg" alt="" />
                 Буду смотреть
               </button>
-              <% } %>
+              <% } } %>
+
             </div>
           </div>
 

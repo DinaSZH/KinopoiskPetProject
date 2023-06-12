@@ -46,10 +46,13 @@
                 >
                 <a href=""><%=item.country.name %>, <%=item.genre.name %></a>
                 <a href="">Author: <%=item.author.full_name %></a>
-                <button class="film-btn">
-                  <img src="/images/icons/play.svg" alt="" />
-                  WATCH
-                </button>
+
+                <a href="/detail/<%=item._id %>">
+                  <button class="film-btn">
+                    <img src="/images/icons/play.svg" alt="" />
+                    Смотреть
+                  </button>
+                </a>
               </div>
             </div>
             <div class="card-right">
