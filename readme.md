@@ -1,3 +1,3 @@
-Project in proccessing
+# Kinopoisk 
+Аналог сайта https://www.kinopoisk.ru/
 
-# Kinopoisk
